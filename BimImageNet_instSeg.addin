@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+	<AddIn Type="Application">
+		<Name>BimImageNet_instSeg</Name>
+		<Assembly>D:\Huaquan\BimImageNet\App_Revit_rayTracing_v4.2_instSeg\RevitViewCapture\bin\x64\Debug\RevitViewCapture.dll</Assembly>
+		<AddInId>76eb700a-2c85-4888-a78d-31429ecae9ed</AddInId>
+		<FullClassName>BimImageNet.BimImageNet</FullClassName>
+		<VendorId>ADSK</VendorId>
+		<VendorDescription>Autodesk, www.autodesk.com</VendorDescription>
+	</AddIn>
+</RevitAddIns>

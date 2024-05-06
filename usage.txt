@@ -1,0 +1,7 @@
+1. when processing a building model multiple batches, after processing each batch (capture and annotate the batch), 
+   the BIM model MUST be reset to the original status for a new batch
+2. The captured view id may duplicates in different batch. This is fine as all the images are located in relevant space folders, which are unique in the entire building
+3. The building level statistics will automatically update with the new batches processed 
+4. rendering time is manually obtained based on the timestaps of rendered images
+5. when export rendering images from enscape, make sure Camera is set to "Auto Exposure"
+6. using external py applications should go to the dist folder instead of build folder
