@@ -1,0 +1,168 @@
+-------- v2 --------- 
+1. reorganize viewImageOutput and viewImageSegmnetation 
+   - capture one image and then segment the image instead of captur all images and then do the segmentation for all images
+  
+2. develop a universal grid-based mentod to automatically capture views
+
+3. Merge two modes of manual and automatic view captureing method into one workflow
+   - convert commandline plug-in into app-alike plug in with interface consisting of two separate steps: capture view and segment view. so that users can manually delete invalid views
+
+4. Add the output of point clouds (semantic and instance segmentation)
+
+5. Add the output of object material
+
+6. Add object part instance segmentation
+   !!!! NOTE: currently we (have to) extract components/parts by extracting pure solids 
+   !!!! NOTE: although RevitAPI provide functions (GetSubelements() for normal element, GetSubComponentIds() for familyInstance) to extract subcomponents, 
+        but in most cases the results are not exposed to the users.
+
+7. Add the output of 3D bounding box for image and PCs
+
+8. Add the output of 2D bounding box for image
+
+9. debug instance sgementation algorithm 
+
+10. debug automatic image capturing function
+
+
+----------- v3 ----------------------------
+1. Make the ray tracing proces in global CS instead of camera CS as AABBs of objects in global AABBs are usually tightest boxes, i.e., OBB (2 times faster for expremely complex scenes)
+2. Inner offset room bounding boxes for grid generation 
+3. Use and outer offset object part bounding boxes for camera position determination 
+4. Note: even when computing normal vector directly from triangle's vertices, using triangle's normal in downstream processes cannot improve the efficiency 
+   ---> ray-triangle intersection algorithm is very fast
+5. Add function to output triangles of the BIM model and the objects in VF
+6. Turn on triangle's normal
+7. output VF information
+
+----------- v4 ----------------------------
+1. change AABB tree's name to BVH tree
+2. implement one-tier object BVH tree, one-tier triangle BVH tree
+   --> use median split strategy
+   --> add surface area heuristic (SAH) strategy  (!!!!! need further debug; sometimes fail to construct trees; extremely time-consuming to construct the trees)
+ 
+BVH -> object partitioning tree: node AABBs can overlap; object belongs to an node AABB only; node AABBs tightly cover its objects (focusing on partitioning object sets)
+kd tree -> space partitioning tree; node AABBs cannot overlap; object can belong to multiple node AABBs; node AABBs may not tightly cover its objects (focus on partitioning space)
+3. seperate output BIM image and segment BIM image
+4. add a function to check image similarity before doing the segmentation
+5. improve image capturing planning by considering image augmentation technique: horizontal and vertical flip (rotating 180), image rotation (90)
+6. consider image distortion in image augmentation technique
+7. improve the view capturing function to enable adjust FOVs (set to intger like 50 - which can be set in Enscape)
+8. intently assign a view name (View3D.Name): spaceName&spaceID_viewIndex ---> embed space name
+9. structure of dataset
+
+
+
+------------- v4.1 -------------------------- debug version
+1. implement two user interfaces
+2. implement the function to run python functions (postprocessing + similarity checking) in c# application
+3. improve the convinience for processing entire model
+   ---> implement the function to extract and select spaces in Revit (useSpaces)
+   ---> enable the specification of existing view for usage (useExistingViews)
+        ---> improve the view naming (avoid space in the folder name)
+4. postprocessing: 
+   ---> replace np.loadtxt() with pandas
+   ---> remove 3D OBB generation function and using MathGeoLib library in C# program
+5. invalid image checking：
+   ---> add function to detect plain image (without edges) 
+   ---> improve the similarity checking based on edges rather than raw RGB
+   ---> improve the similarity checking by considering the checking after rotating the images 90, 180, 270
+6. improve the image capturing process by distorting those valid images only
+7. automatically detect image size for image sgementation
+8. enable to select whether need to distort original BIM images or not
+9. randomly select date 
+
+------------- v4.2 -------------------------- release version
+1. move valid image distortion functions to image capturing module
+2. image capturing module: 
+   ---> add distortion coefficients
+   ---> remove using pre-defined locations
+   ---> improve interface
+10. output scene and camera pose label
+11. output organize by spaces-images path
+12. output detailed statistics: space level and building level 
+    image_level 
+    --- running times: total
+        - preprocessing for labelling: 
+        - ray tracing: 
+        - write out labels: 
+    --- Num of triangles in the model
+    --- Num of triangles in the VF
+    --- depth of VF
+    --- Num of object types
+    --- Num of object instances
+    --- Num of object part instances
+    --- Num of material types
+
+    space_level
+    --- camera locations 
+    --- all images
+    --- valid images
+    --- object type
+    --- object instances
+    --- object part level instances
+    --- material type
+
+    building_level
+    --- camera locations 
+    --- all images
+    --- valid images
+    --- scene category:
+    --- scene number: 
+    --- object type
+    --- object instances
+    --- object part level instance annotations
+    --- material type
+
+    --- running times: total
+        - model view capturing: 
+        - valid checking: 
+        - valid image distortion: 
+        - preprocessing for image labelling:  
+        - pure ray tracing: 
+        - writeout labels: 
+13. do not output revit image, dirctly using Enscape image
+14. output statistics in json file to enable the statistics update or rewrite
+15. !!! improve camera localization by coinsider camera's size. (i.e., treat camera as a solid object: from origin to image plane) 
+    ---- currently addressed by shriming space AABB inside by 100 mm to generate initizaed grids.
+16: improve the app enabe processing a building in smaller batch or multiple time.
+17： either pitch or roll are limited to 180, the other one 360, for coninience: 
+18: to capture normal images, the starting point of yaw, pitch and roll is set to be:  ; and the range is: 
+
+19.1: DEBUG 1: Bedroom204_857197 the entire space cannot processed in segResult folder but can be processed on the desktop
+19. DEBUG 2: MasterBedroom206_857191 and many others: there eixt failing images when processing the entire space, but these image can be separately processed
+20: TODO: correct the yaw, pitch, and roll concepts to be consistent with the paper; and correct all the generated labels.
+21: TODO: use try method for postprocessing function to skip fail cases, and remark failed file.
+22. TD： uniformed data structure for all the labels
+
+
+------------- v4.2_instanceSeg -------------------------- 
+
+1. simplfied version based on v4.2: 
+   - only focus on instance sgementation of walls, doors, floors, ceilings and ignore all other objects
+2. To reduce objInstance.json file size, update json file writing function by keep only objectCls(Wall)_ID_partNo(p1)
+    bimObj.objectType = bimObj.Category /*+ '$' + bimObj.Name* --- utils.RetriveTargetElements
+2. objects with physical openings: ignore physical openings
+   - extract host_opening relationhsips
+   - in the annotation: for each opening pixel, add host object as well: door_id_p1/wall_id_p1
+3. semi-automatic method to capture images: manually decide camera locations
+4. parameters setting:
+   - default camera location height: 1750mm
+   - image capturing angles: camera viewport parallal with model Z (horizontal), only rotate aroud model Z (horizontal rotation) 
+   - image size: 1024 * 1024
+   - angular FOV (H/V)): 70/70
+
+
+---------- future work ---------------------- 
+
+-1. enable to automatically set sun and shaing effectives (View3D.SunAndShadowSettings, View3D.SunlightIntensity)
+0. implement two-tier kd-tree, one-tier object kd-tree, one-tier triangle kd-tree
+1. inverstigate formal object part extraction methods
+    -> ??? explore Parts, Assemblies, PartUtils and DivideParts --> Parts can be generated from elements with layered structures (RevitAPI)
+       --seems for retriving layer parts of layered objects like wall (https://thebuildingcoder.typepad.com/blog/2012/09/parts-assemblies-partutils-and-divideparts.html)
+       -- DividParts: devide an object into several parts
+    -> ??? FamilyInstanceDoc  (https://forums.autodesk.com/t5/revit-api-forum/how-to-find-all-deeply-nested-components-in-the-given-family/td-p/9889566)
+       Family family = familyInstance.Symbol.Family;
+      Document familyDoc = doc.EditFamily(family);
+2. GPU-based parallel computing for efficiency improvement of ray tracing process
+3. replace AABB with OBB for automatic camera set up

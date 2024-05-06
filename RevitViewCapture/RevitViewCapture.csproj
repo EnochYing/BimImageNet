@@ -105,6 +105,46 @@
     <Compile Include="utils.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App_postProcessing\.idea\App_postProcessing.iml" />
+    <None Include="App_postProcessing\build\invalidImageChecking\Analysis-00.toc" />
+    <None Include="App_postProcessing\build\invalidImageChecking\base_library.zip" />
+    <None Include="App_postProcessing\build\invalidImageChecking\COLLECT-00.toc" />
+    <None Include="App_postProcessing\build\invalidImageChecking\EXE-00.toc" />
+    <None Include="App_postProcessing\build\invalidImageChecking\invalidImageChecking.exe.manifest" />
+    <None Include="App_postProcessing\build\invalidImageChecking\invalidImageChecking.pkg" />
+    <None Include="App_postProcessing\build\invalidImageChecking\localpycs\pyimod01_archive.pyc" />
+    <None Include="App_postProcessing\build\invalidImageChecking\localpycs\pyimod02_importers.pyc" />
+    <None Include="App_postProcessing\build\invalidImageChecking\localpycs\pyimod03_ctypes.pyc" />
+    <None Include="App_postProcessing\build\invalidImageChecking\localpycs\pyimod04_pywin32.pyc" />
+    <None Include="App_postProcessing\build\invalidImageChecking\localpycs\struct.pyc" />
+    <None Include="App_postProcessing\build\invalidImageChecking\PKG-00.toc" />
+    <None Include="App_postProcessing\build\invalidImageChecking\PYZ-00.pyz" />
+    <None Include="App_postProcessing\build\invalidImageChecking\PYZ-00.toc" />
+    <None Include="App_postProcessing\build\invalidImageChecking\Tree-00.toc" />
+    <None Include="App_postProcessing\build\invalidImageChecking\Tree-01.toc" />
+    <None Include="App_postProcessing\build\invalidImageChecking\Tree-02.toc" />
+    <None Include="App_postProcessing\build\postprocessing_instSeg\Analysis-00.toc" />
+    <None Include="App_postProcessing\build\postprocessing_instSeg\base_library.zip" />
+    <None Include="App_postProcessing\build\postprocessing_instSeg\COLLECT-00.toc" />
+    <None Include="App_postProcessing\build\postprocessing_instSeg\EXE-00.toc" />
+    <None Include="App_postProcessing\build\postprocessing_instSeg\localpycs\pyimod01_archive.pyc" />
+    <None Include="App_postProcessing\build\postprocessing_instSeg\localpycs\pyimod02_importers.pyc" />
+    <None Include="App_postProcessing\build\postprocessing_instSeg\localpycs\pyimod03_ctypes.pyc" />
+    <None Include="App_postProcessing\build\postprocessing_instSeg\localpycs\pyimod04_pywin32.pyc" />
+    <None Include="App_postProcessing\build\postprocessing_instSeg\localpycs\struct.pyc" />
+    <None Include="App_postProcessing\build\postprocessing_instSeg\PKG-00.toc" />
+    <None Include="App_postProcessing\build\postprocessing_instSeg\postprocessing_instSeg.exe.manifest" />
+    <None Include="App_postProcessing\build\postprocessing_instSeg\postprocessing_instSeg.pkg" />
+    <None Include="App_postProcessing\build\postprocessing_instSeg\PYZ-00.pyz" />
+    <None Include="App_postProcessing\build\postprocessing_instSeg\PYZ-00.toc" />
+    <None Include="App_postProcessing\build\postprocessing_instSeg\Tree-00.toc" />
+    <None Include="App_postProcessing\build\postprocessing_instSeg\Tree-01.toc" />
+    <None Include="App_postProcessing\build\postprocessing_instSeg\Tree-02.toc" />
+    <None Include="App_postProcessing\data\image_annotation\test_18_ex.json" />
+    <None Include="App_postProcessing\data\image_annotation\test_27_ex.json" />
+    <None Include="App_postProcessing\data\image_annotation\test_27_in.json" />
+    <None Include="App_postProcessing\data\image_annotation\test_30_in.json" />
+    <None Include="App_postProcessing\__pycache__\utils.cpython-39.pyc" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -117,8 +157,53 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="App_postProcessing\.idea\.gitignore" />
+    <Content Include="App_postProcessing\.idea\inspectionProfiles\profiles_settings.xml" />
+    <Content Include="App_postProcessing\.idea\inspectionProfiles\Project_Default.xml" />
+    <Content Include="App_postProcessing\.idea\misc.xml" />
+    <Content Include="App_postProcessing\.idea\modules.xml" />
+    <Content Include="App_postProcessing\.idea\workspace.xml" />
+    <Content Include="App_postProcessing\build\invalidImageChecking\invalidImageChecking.exe" />
+    <Content Include="App_postProcessing\build\invalidImageChecking\warn-invalidImageChecking.txt" />
+    <Content Include="App_postProcessing\build\invalidImageChecking\xref-invalidImageChecking.html" />
+    <Content Include="App_postProcessing\build\postprocessing_instSeg\postprocessing_instSeg.exe" />
+    <Content Include="App_postProcessing\build\postprocessing_instSeg\warn-postprocessing_instSeg.txt" />
+    <Content Include="App_postProcessing\build\postprocessing_instSeg\xref-postprocessing_instSeg.html" />
+    <Content Include="App_postProcessing\curveFitting.py" />
+    <Content Include="App_postProcessing\data\image_annotation\IMG_0977.JPG" />
+    <Content Include="App_postProcessing\data\image_annotation\IMG_1019.JPG" />
+    <Content Include="App_postProcessing\data\image_annotation\IMG_1084.JPG" />
+    <Content Include="App_postProcessing\data\image_annotation\IMG_1299.JPG" />
+    <Content Include="App_postProcessing\data\image_annotation\IMG_1608.JPG" />
+    <Content Include="App_postProcessing\data\image_annotation\label_IMG_0977.JPG" />
+    <Content Include="App_postProcessing\data\image_annotation\label_IMG_1019.JPG" />
+    <Content Include="App_postProcessing\data\image_annotation\label_IMG_1084.JPG" />
+    <Content Include="App_postProcessing\data\image_annotation\label_IMG_1299.JPG" />
+    <Content Include="App_postProcessing\data\image_annotation\label_IMG_1608.JPG" />
+    <Content Include="App_postProcessing\data\image_annotation\log.txt" />
+    <Content Include="App_postProcessing\imaAugmentation.py" />
+    <Content Include="App_postProcessing\img.png" />
+    <Content Include="App_postProcessing\img_1.png" />
+    <Content Include="App_postProcessing\img_2.png" />
+    <Content Include="App_postProcessing\img_3.png" />
+    <Content Include="App_postProcessing\img_4.png" />
+    <Content Include="App_postProcessing\invalidImageChecking.py" />
+    <Content Include="App_postProcessing\invalidImageChecking_test.py" />
+    <Content Include="App_postProcessing\postprocessing.py" />
+    <Content Include="App_postProcessing\postprocessing_instSeg.py" />
+    <Content Include="App_postProcessing\prepare_GT_mask.py" />
+    <Content Include="App_postProcessing\statistics.py" />
+    <Content Include="App_postProcessing\utils.py" />
+    <Content Include="App_postProcessing\viewBB.py" />
+    <Content Include="App_postProcessing\visualize.py" />
+    <Content Include="App_postProcessing\visualize_pc.py" />
+    <Content Include="Camera &amp; image setting.txt" />
+    <Content Include="debug.txt" />
+    <Content Include="LICENSE.txt" />
+    <Content Include="note.txt" />
     <Content Include="resources\captureImages.png" />
     <Content Include="resources\labelImages.png" />
+    <Content Include="usage.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

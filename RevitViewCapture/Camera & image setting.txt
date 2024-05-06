@@ -1,0 +1,23 @@
+1. iphone6s: [W, H] = [4032, 3024]; 72dpi 
+
+2. Revit default camera: [W, H] = [512, 383], HFOV= 50.2, 72dpi(can be set)
+   - it is possible to adjust revit camera's focus, and FOV angle will be changed automatically: 
+     https://knowledge.autodesk.com/support/revit/downloads/caas/video/youtube/lesson/144209-courseId-100332.html#:~:text=As%20you%20drag%20the%20camera%2C%20the%20field%20of%20view%20changes,and%20rotates%20about%20the%20camera.
+   - after using camera capture a 3D view, it is possible to manually expand the rectangular box, and can export the changed image, 
+     but the camera setting is not changed, so the depth and segmentation results keep no changing and not fit with the changed image
+   - For a camera, two methods to change the image size (W & H)
+     >>>> Method 1: change W or H only by 
+                    FitDirection = FitDirectionType.Horizontal/Vertical;
+                    ieo.ZoomType = ZoomFitType.FitToPage; 
+                    ieo.PixelSize = newWidth/newHeight;
+                    !!!!!! Note: the other direction does not scale by the exactly same factor (e.g., W*8, H*8.012) 
+     >>>> Method 2: zoom real physical image by 
+                    ieo.ZoomType = ZoomFitType.Zoom;
+                    ieo.Zoom = 100;
+                    ImageResolution = ImageResolution.DPI_72;
+                    !!!!!! Note: the zoom scale also not strictly. there are several pixels shiftting                              
+
+3. Enscape: 72dpi (best for screen),   
+   - when eanble revit live camera, enscape camera's pose and location are exactly the same with revit camera
+   - only when setting HVOF and aspect ratio (W:H) to be same with revit, can the Enscape camera (focus) be exactly the same with revit camera (focus)
+   - HFOV: int value, 50 = revit HFOV (50.2) --- can perfectly match  
